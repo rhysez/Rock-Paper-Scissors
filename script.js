@@ -3,25 +3,31 @@ const choices = ["rock", "paper", "scissors"]
 
 
 function game(){
-    console.log("Make your choice");
     playRound();
 }
 
-// Starts a round //
-function playRound(playerSelection, computerSelection){ 
-    
-}
-
-// Calling this function randomly returns either "rock" "raper" or "Scissors" from the computer //
+// Calling this function randomly returns either "rock" "paper" or "scissors" from the computer //
 function getComputerChoice(){
     let compChoice = choices[Math.floor(Math.random() * choices.length)]
     return "The computer chose: " + compChoice; 
-}   
+}  
 
-function getPlayerChoice(){
-   
+// Starts a round //
+function playRound(playerSelection, computerSelection){ 
+    playerSelection = "rock";
+    computerSelection = getComputerChoice();
+    if (playerSelection === "rock" && computerSelection === "scissors" ||
+        playerSelection === "scissors" && computerSelection === "paper" ||
+        playerSelection === "paper" && computerSelection === "rock") {
+            return "You win!"
+        } else if (playerSelection === "scissors" && computerSelection === "rock" ||
+                    playerSelection === "paper" && computerSelection === "scissors" ||
+                    playerSelection === "rock" && computerSelection === "paper") {
+                        return "Computer wins!"
+                    } else {
+                        return "It's a tie!"
+                    }
 }
-
 
 game();
 
