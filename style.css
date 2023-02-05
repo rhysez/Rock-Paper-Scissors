@@ -1,0 +1,23 @@
+body {
+    background-color: peru;
+}
+
+#container {
+    text-align: center;
+}
+
+#headerbox {
+    font-size: xx-large;
+    color: white;
+}
+
+#buttonbox {
+    margin: 50px;
+}
+
+#rock, 
+#paper, 
+#scissors {
+    width: 200px;
+    height: 50px;
+}

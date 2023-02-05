@@ -1,7 +1,34 @@
-// Calls the playRound function
-function game(){
-    playRound()
-}
+// html references
+const buttonRock = document.querySelector('#rock');
+const buttonPaper = document.querySelector('#paper');
+const buttonScissors = document.querySelector('#scissors');
+const container = document.querySelector('#container');
+const scoreTally = document.createElement('div');
+const winnerLoser = document.createElement('div');
+scoreTally.classList.add('scoretally');
+scoreTally.textContent = "You will see your scores here.";
+scoreTally.style.fontSize = "xx-large"
+winnerLoser.classList.add('winnerloser');
+winnerLoser.textContent = ""
+
+// Selects player choice and alerts outcome
+buttonRock.addEventListener('click', function(){
+    playRound("rock", getComputerChoice())
+});
+
+buttonPaper.addEventListener('click', function(){
+    playRound("paper", getComputerChoice())
+});
+
+buttonScissors.addEventListener('click', function(){
+    playRound("scissors", getComputerChoice())
+});
+
+// Variables for player choice and computer choice
+let playerScore = parseInt(0);
+let computerScore = parseInt(0);
+let overallScore = playerScore + computerScore;
+
 
 // Randomly returns either "rock" "paper" or "scissors" from the computer 
 function getComputerChoice(){
@@ -13,40 +40,26 @@ function getComputerChoice(){
 // playerScore++ and computerScore++ will keep tally of scores
 function playRound(playerSelection, computerSelection){ 
     if (playerSelection === computerSelection) {
-        return "It's a tie, try again!"
-    } else if (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors" ||
-        playerSelection.toLowerCase() === "scissors" && computerSelection === "paper" ||
-        playerSelection.toLowerCase() === "paper" && computerSelection === "rock") {
+        scoreTally.textContent = "Oof, you both picked the same!"
+    } else if (playerSelection === "rock" && computerSelection === "scissors" ||
+        playerSelection === "scissors" && computerSelection === "paper" ||
+        playerSelection === "paper" && computerSelection === "rock") {
             playerScore++;
             overallScore++;
-            return `You win! Your score is ${playerScore}!`
-        } else if (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock" ||
-                    playerSelection.toLowerCase() === "paper" && computerSelection === "scissors" ||
-                    playerSelection.toLowerCase() === "rock" && computerSelection === "paper") {
+            scoreTally.textContent = `You win! Your score: ${playerScore}, Computer score: ${computerScore}`
+        } else if (playerSelection === "scissors" && computerSelection === "rock" ||
+                    playerSelection === "paper" && computerSelection === "scissors" ||
+                    playerSelection === "rock" && computerSelection === "paper") {
                         computerScore++;
                         overallScore++;
-                        return `Computer wins! Computer score is ${computerScore}`
+                        scoreTally.textContent = `Computer wins! Your score: ${playerScore}, Computer score: ${computerScore}`
                     } 
 }
 
-// Variables for player choice and computer choice
-let playerScore = parseInt(0);
-let computerScore = parseInt(0);
-let overallScore = playerScore + computerScore;
 
-for (i = 0; i < 5; i++){
-    const playerSelection = prompt("Rock, paper or scissors?");
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection))
-} if (i === 5 && playerScore > computerScore){
-    console.log("You have won! Congratulations!")
-} else if (i === 5 && playerScore < computerScore){
-    console.log("You lose! Better luck next time.")
-} else if (i === 5 && playerScore === computerScore){
-    console.log("It's a tie! Is a rematch on the horizon?")
-}
+container.appendChild(scoreTally);
+container.appendChild(winnerLoser);
 
-game();
 
 
 
