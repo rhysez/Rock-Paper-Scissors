@@ -56,7 +56,6 @@ function playRound(playerSelection, computerSelection){
                     } 
 }
 
-
 container.appendChild(scoreTally);
 container.appendChild(winnerLoser);
 
