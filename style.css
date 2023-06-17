@@ -23,9 +23,11 @@ body {
     margin-bottom: 70px;
 }
 
-#rock, 
-#paper, 
-#scissors {
+.button:hover {
+    background-color: gold;
+}
+
+.button {
     width: 200px;
     height: 50px;
     font-size: larger;
